@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leads Management - EXOTIC ONE</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="stylesheet" href="leads-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Admin Navigation -->
+    <nav class="admin-navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="static/Logo Without Bg.png" alt="EXOTIC ONE" class="logo">
+                <span class="admin-title">Leads Management</span>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-secondary" onclick="goToMainSite()">
+                    <i class="fas fa-external-link-alt"></i> View Site
+                </button>
+                <button class="btn-primary" onclick="goToAdmin()">
+                    <i class="fas fa-tachometer-alt"></i> Admin Dashboard
+                </button>
+                <button class="btn-primary" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-content">
+            <ul class="sidebar-menu">
+                <li class="menu-item" onclick="goToAdmin()">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </li>
+                <li class="menu-item" onclick="goToAdmin('cars')">
+                    <i class="fas fa-car"></i>
+                    <span>Manage Cars</span>
+                </li>
+                <li class="menu-item" onclick="goToAdmin('add-car')">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Add New Car</span>
+                </li>
+                <li class="menu-item active">
+                    <i class="fas fa-users"></i>
+                    <span>Leads Management</span>
+                </li>
+                <li class="menu-item" onclick="goToAdmin('analytics')">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Analytics</span>
+                </li>
+                <li class="menu-item" onclick="goToAdmin('settings')">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+
+            <!-- Leads Content -->
+            <div class="leads-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalLeads">0</h3>
+                            <p>Total Leads</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="newLeads">0</h3>
+                            <p>New Today</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="contactedLeads">0</h3>
+                            <p>Contacted</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="convertedLeads">0</h3>
+                            <p>Converted</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters and Search -->
+                <div class="leads-controls">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="leadsSearch" placeholder="Search leads...">
+                    </div>
+                    <div class="filter-controls">
+                        <select id="statusFilter">
+                            <option value="all">All Status</option>
+                            <option value="new">New</option>
+                            <option value="contacted">Contacted</option>
+                            <option value="qualified">Qualified</option>
+                            <option value="converted">Converted</option>
+                            <option value="lost">Lost</option>
+                        </select>
+                        <select id="sourceFilter">
+                            <option value="all">All Sources</option>
+                            <option value="contact-form">Contact Form</option>
+                            <option value="test-drive">Test Drive</option>
+                            <option value="quote-request">Quote Request</option>
+                            <option value="phone">Phone</option>
+                            <option value="walk-in">Walk-in</option>
+                        </select>
+                        <button class="btn-primary" id="exportLeads">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Loading Section -->
+                <div id="leadsLoading" class="leads-loading">
+                    <div class="loading-header">
+                        <div class="loading-spinner">
+                            <div class="spinner"></div>
+                        </div>
+                        <h3>Loading Leads...</h3>
+                        <p>Please wait while we fetch your leads data</p>
+                    </div>
+                    
+                    <!-- Skeleton Stats -->
+                    <div class="skeleton-stats">
+                        <div class="skeleton-stat-card">
+                            <div class="skeleton-icon"></div>
+                            <div class="skeleton-text">
+                                <div class="skeleton-line large"></div>
+                                <div class="skeleton-line small"></div>
+                            </div>
+                        </div>
+                        <div class="skeleton-stat-card">
+                            <div class="skeleton-icon"></div>
+                            <div class="skeleton-text">
+                                <div class="skeleton-line large"></div>
+                                <div class="skeleton-line small"></div>
+                            </div>
+                        </div>
+                        <div class="skeleton-stat-card">
+                            <div class="skeleton-icon"></div>
+                            <div class="skeleton-text">
+                                <div class="skeleton-line large"></div>
+                                <div class="skeleton-line small"></div>
+                            </div>
+                        </div>
+                        <div class="skeleton-stat-card">
+                            <div class="skeleton-icon"></div>
+                            <div class="skeleton-text">
+                                <div class="skeleton-line large"></div>
+                                <div class="skeleton-line small"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skeleton Table -->
+                    <div class="skeleton-table">
+                        <div class="skeleton-table-header">
+                            <div class="skeleton-header-cell"></div>
+                            <div class="skeleton-header-cell"></div>
+                            <div class="skeleton-header-cell"></div>
+                            <div class="skeleton-header-cell"></div>
+                            <div class="skeleton-header-cell"></div>
+                            <div class="skeleton-header-cell"></div>
+                            <div class="skeleton-header-cell"></div>
+                            <div class="skeleton-header-cell"></div>
+                        </div>
+                        <div class="skeleton-table-body">
+                            <div class="skeleton-row">
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                            </div>
+                            <div class="skeleton-row">
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                            </div>
+                            <div class="skeleton-row">
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                            </div>
+                            <div class="skeleton-row">
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                            </div>
+                            <div class="skeleton-row">
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                                <div class="skeleton-cell"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leads Table -->
+                <div class="leads-table-container" id="leadsTableContainer" style="display: none;">
+                    <table class="leads-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Interest</th>
+                                <th>Source</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leadsTableBody">
+                            <!-- Leads will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="btn-secondary" id="prevPage" disabled>
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                    <span class="page-info">
+                        Page <span id="currentPage">1</span> of <span id="totalPages">1</span>
+                    </span>
+                    <button class="btn-secondary" id="nextPage">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lead Detail Modal -->
+    <div id="leadModal" class="lead-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Lead Details</h2>
+                <button class="close" id="closeLeadModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="leadModalBody">
+                <!-- Lead details will be populated here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancelLead">Cancel</button>
+                <button class="btn-primary" id="updateLead">Update Lead</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="auth.js"></script>
+    <!-- Firebase SDK (compat) -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-storage-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="leads-script.js"></script>
+    <script>
+        // Require authentication for this page
+        try { requireAuthOrRedirect(); } catch (e) { /* no-op */ }
+        // Navigation functions
+        function goToMainSite() {
+            window.open('index.html', '_blank');
+        }
+        
+        function goToAdmin(section = '') {
+            if (section) {
+                window.location.href = `admin.html#${section}`;
+            } else {
+                window.location.href = 'admin.html';
+            }
+        }
+        
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

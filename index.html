@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXOTIC ONE - Futuristic Car Showroom</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Experience the future of automotive excellence at EXOTIC ONE. Browse our collection of luxury, sports, and electric vehicles with cutting-edge technology and design.">
+    <meta name="keywords" content="luxury cars, sports cars, electric vehicles, car showroom, automotive, futuristic cars">
+    <meta name="author" content="EXOTIC ONE">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="EXOTIC ONE - Futuristic Car Showroom">
+    <meta property="og:description" content="Experience the future of automotive excellence with our collection of luxury and high-performance vehicles.">
+    <meta property="og:image" content="static/Logo With Bg.jpg">
+    <meta property="og:url" content="">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="EXOTIC ONE - Futuristic Car Showroom">
+    <meta name="twitter:description" content="Experience the future of automotive excellence with our collection of luxury and high-performance vehicles.">
+    <meta name="twitter:image" content="static/Logo With Bg.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="static/icon.png">
+    <link rel="apple-touch-icon" href="static/icon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Plyr CSS -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="static/Logo Without Bg.png" alt="EXOTIC ONE" class="logo">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#showroom" class="nav-link">Showroom</a></li>
+                <li><a href="#comparison" class="nav-link">Compare Cars</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-background">
+        <video
+            id="hero-video"
+            class="hero-video"
+            playsinline
+            muted
+            loop
+            preload="auto"
+            style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;">
+            <source src="https://firebasestorage.googleapis.com/v0/b/exoticone-eg.firebasestorage.app/o/XTOICONE_iNTRO.mp4?alt=media&token=52f2b917-c824-4a3a-b7ee-a749ba9917be" type="video/mp4">
+            <source src="videos/XTOICONE_iNTRO.mp4" type="video/mp4">
+            <p>Your browser doesn't support video playback.</p>
+        </video>
+    </div>
+    <div class="hero-content">
+        <h1 class="hero-title">
+            <span class="title-line">FUTURE</span>
+            <span class="title-line">IS HERE</span>
+        </h1>
+        <p class="hero-subtitle">Experience the next generation of automotive excellence</p>
+        <div class="hero-buttons">
+            <button class="btn-primary" onclick="scrollToSection('showroom')">
+                <span>Explore Showroom</span>
+            </button>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <div class="scroll-line"></div>
+        <span>Scroll to explore</span>
+    </div>
+</section>
+
+
+    <!-- Car Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="carSearch" placeholder="Search for your dream car...">
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All Cars</button>
+                    <button class="filter-btn" data-filter="luxury">Luxury</button>
+                    <button class="filter-btn" data-filter="sports">Sports</button>
+                    <button class="filter-btn" data-filter="electric">Electric</button>
+                    <button class="filter-btn" data-filter="suv">SUV</button>
+                    <button class="filter-btn" data-filter="sedan">Sedan</button>
+                    <button class="filter-btn" data-filter="coupe">Coupe</button>
+                    <button class="filter-btn" data-filter="convertible">Convertible</button>
+                    <button class="filter-btn" data-filter="hatchback">Hatchback</button>
+                    <button class="filter-btn" data-filter="wagon">Wagon</button>
+                    <button class="filter-btn" data-filter="crossover">Crossover</button>
+                    <button class="filter-btn" data-filter="supercar">Supercar</button>
+                    <button class="filter-btn" data-filter="hypercar">Hypercar</button>
+                    <button class="filter-btn" data-filter="classic">Classic</button>
+                    <button class="filter-btn" data-filter="truck">Truck</button>
+                </div>
+                <!-- Mobile Category Selector -->
+                <div class="category-select-mobile" style="display:none;margin-top:12px;">
+                    <label for="categorySelectMobile" style="display:block;margin-bottom:6px;">Category</label>
+                    <select id="categorySelectMobile" style="width:100%;padding:10px;border-radius:8px;border:1px solid #333;background:#0b0b0f;color:#fff;">
+                        <option value="all">All Cars</option>
+                        <option value="luxury">Luxury</option>
+                        <option value="sports">Sports</option>
+                        <option value="electric">Electric</option>
+                        <option value="suv">SUV</option>
+                        <option value="sedan">Sedan</option>
+                        <option value="coupe">Coupe</option>
+                        <option value="convertible">Convertible</option>
+                        <option value="hatchback">Hatchback</option>
+                        <option value="wagon">Wagon</option>
+                        <option value="crossover">Crossover</option>
+                        <option value="supercar">Supercar</option>
+                        <option value="hypercar">Hypercar</option>
+                        <option value="classic">Classic</option>
+                        <option value="truck">Truck</option>
+                    </select>
+                </div>
+                <div class="sort-controls">
+                    <select id="sortSelect">
+                        <option value="name">Sort by Name</option>
+                        <option value="year">Year: Newest First</option>
+                    </select>
+                </div>
+                <div class="filter-advanced">
+                    <div class="filter-field">
+                        <label for="yearMin">Year Min</label>
+                        <input type="number" id="yearMin" placeholder="e.g. 2018" min="1900" max="2100">
+                    </div>
+                    <div class="filter-field">
+                        <label for="yearMax">Year Max</label>
+                        <input type="number" id="yearMax" placeholder="e.g. 2025" min="1900" max="2100">
+                    </div>
+                    <div class="filter-field">
+                        <label for="hpMin">Min HP</label>
+                        <input type="number" id="hpMin" placeholder="e.g. 400" min="0" step="10">
+                    </div>
+                    <div class="filter-switches">
+                        <label class="filter-btn">
+                            <input type="checkbox" id="hasVideo" style="font-size: x-small;">
+                            <span>Has Video</span>
+                        </label>
+                        <label class="filter-btn">
+                            <input type="checkbox" id="onlyFavorites" style="font-size: x-small;">
+                            <span>Favorites</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showroom Section -->
+    <section id="showroom" class="showroom">
+        <div class="container">
+            <h2 class="section-title">Our Collection</h2>
+            <div class="cars-grid" id="carsGrid">
+                <!-- Cars will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Car Comparison Section -->
+    <section id="comparison" class="comparison-section">
+        <div class="container">
+            <h2 class="section-title">Compare Cars</h2>
+            <p class="section-subtitle">Select up to 3 cars to compare their specifications and features side by side</p>
+            
+            <!-- Comparison Tool -->
+            <div class="comparison-tool">
+                <!-- Car Selection Area -->
+                <div class="comparison-selection">
+                    <div class="selection-slots">
+                        <div class="car-slot" data-slot="0">
+                            <div class="slot-placeholder">
+                                <i class="fas fa-plus"></i>
+                                <span>Select Car 1</span>
+                            </div>
+                            <div class="selected-car" style="display: none;">
+                                <img class="car-thumbnail" src="" alt="">
+                                <div class="car-info">
+                                    <h4 class="car-name"></h4>
+                                    <p class="car-year"></p>
+                                </div>
+                                <button class="remove-car" onclick="removeCarFromComparison(0)">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="car-slot" data-slot="1">
+                            <div class="slot-placeholder">
+                                <i class="fas fa-plus"></i>
+                                <span>Select Car 2</span>
+                            </div>
+                            <div class="selected-car" style="display: none;">
+                                <img class="car-thumbnail" src="" alt="">
+                                <div class="car-info">
+                                    <h4 class="car-name"></h4>
+                                    <p class="car-year"></p>
+                                </div>
+                                <button class="remove-car" onclick="removeCarFromComparison(1)">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="car-slot" data-slot="2">
+                            <div class="slot-placeholder">
+                                <i class="fas fa-plus"></i>
+                                <span>Select Car 3</span>
+                            </div>
+                            <div class="selected-car" style="display: none;">
+                                <img class="car-thumbnail" src="" alt="">
+                                <div class="car-info">
+                                    <h4 class="car-name"></h4>
+                                    <p class="car-year"></p>
+                                </div>
+                                <button class="remove-car" onclick="removeCarFromComparison(2)">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Car Search and Selection -->
+                    <div class="car-search-section">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="comparisonSearch" placeholder="Search cars to compare...">
+                        </div>
+                        <div class="available-cars" id="availableCars">
+                            <!-- Available cars will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Comparison Results -->
+                <div class="comparison-results" id="comparisonResults" style="display: none;">
+                    <div class="comparison-header">
+                        <h3>Comparison Results</h3>
+                        <button class="btn-clear-comparison" onclick="clearComparison()">
+                            <i class="fas fa-trash"></i> Clear All
+                        </button>
+                    </div>
+                    
+                    <div class="comparison-table">
+                        <div class="comparison-row header">
+                            <div class="comparison-cell spec-label">Specification</div>
+                            <div class="comparison-cell car-1" id="car1Header"></div>
+                            <div class="comparison-cell car-2" id="car2Header"></div>
+                            <div class="comparison-cell car-3" id="car3Header"></div>
+                        </div>
+                        
+                        <!-- Basic Info -->
+                        <div class="comparison-group">
+                            <div class="group-title">Basic Information</div>
+                            <div class="comparison-row">
+                                <div class="comparison-cell spec-label">Name</div>
+                                <div class="comparison-cell car-1" id="car1Name"></div>
+                                <div class="comparison-cell car-2" id="car2Name"></div>
+                                <div class="comparison-cell car-3" id="car3Name"></div>
+                            </div>
+                            <div class="comparison-row">
+                                <div class="comparison-cell spec-label">Year</div>
+                                <div class="comparison-cell car-1" id="car1Year"></div>
+                                <div class="comparison-cell car-2" id="car2Year"></div>
+                                <div class="comparison-cell car-3" id="car3Year"></div>
+                            </div>
+                            <div class="comparison-row">
+                                <div class="comparison-cell spec-label">Category</div>
+                                <div class="comparison-cell car-1" id="car1Category"></div>
+                                <div class="comparison-cell car-2" id="car2Category"></div>
+                                <div class="comparison-cell car-3" id="car3Category"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Performance Specs -->
+                        <div class="comparison-group">
+                            <div class="group-title">Performance</div>
+                            <div class="comparison-row">
+                                <div class="comparison-cell spec-label">Engine</div>
+                                <div class="comparison-cell car-1" id="car1Engine"></div>
+                                <div class="comparison-cell car-2" id="car2Engine"></div>
+                                <div class="comparison-cell car-3" id="car3Engine"></div>
+                            </div>
+                            <div class="comparison-row">
+                                <div class="comparison-cell spec-label">Horsepower</div>
+                                <div class="comparison-cell car-1" id="car1Horsepower"></div>
+                                <div class="comparison-cell car-2" id="car2Horsepower"></div>
+                                <div class="comparison-cell car-3" id="car3Horsepower"></div>
+                            </div>
+                            <div class="comparison-row">
+                                <div class="comparison-cell spec-label">0-60 mph</div>
+                                <div class="comparison-cell car-1" id="car1Acceleration"></div>
+                                <div class="comparison-cell car-2" id="car2Acceleration"></div>
+                                <div class="comparison-cell car-3" id="car3Acceleration"></div>
+                            </div>
+                            <div class="comparison-row">
+                                <div class="comparison-cell spec-label">Top Speed</div>
+                                <div class="comparison-cell car-1" id="car1TopSpeed"></div>
+                                <div class="comparison-cell car-2" id="car2TopSpeed"></div>
+                                <div class="comparison-cell car-3" id="car3TopSpeed"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Additional Specs -->
+                        <div class="comparison-group">
+                            <div class="group-title">Additional Specifications</div>
+                            <div class="comparison-row">
+                                <div class="comparison-cell spec-label">Battery Capacity</div>
+                                <div class="comparison-cell car-1" id="car1Battery"></div>
+                                <div class="comparison-cell car-2" id="car2Battery"></div>
+                                <div class="comparison-cell car-3" id="car3Battery"></div>
+                            </div>
+                            <div class="comparison-row">
+                                <div class="comparison-cell spec-label">Mileage</div>
+                                <div class="comparison-cell car-1" id="car1Mileage"></div>
+                                <div class="comparison-cell car-2" id="car2Mileage"></div>
+                                <div class="comparison-cell car-3" id="car3Mileage"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Features -->
+                        <div class="comparison-group">
+                            <div class="group-title">Key Features</div>
+                            <div class="comparison-row">
+                                <div class="comparison-cell spec-label">Features</div>
+                                <div class="comparison-cell car-1" id="car1Features"></div>
+                                <div class="comparison-cell car-2" id="car2Features"></div>
+                                <div class="comparison-cell car-3" id="car3Features"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Custom Builds</h3>
+                    <p>Personalize your vehicle with our advanced customization options</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Premium Service</h3>
+                    <p>Expert maintenance and repair services for all vehicle types</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Extended Warranty</h3>
+                    <p>Comprehensive protection plans for your investment</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Financing</h3>
+                    <p>Flexible payment options to make your dream car affordable</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-left">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Visit Our Showroom</h4>
+                                <p>Portal A, Sodic Beverly Hills, Sheikh Zayed.</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Call Us</h4>
+                                <p>+201288418888</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email Us</h4>
+                                <p>info@exoticone.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="interest" name="interest" required>
+                            <option value="">Select Interest</option>
+                            <option value="luxury">Luxury Cars</option>
+                            <option value="sports">Sports Cars</option>
+                            <option value="electric">Electric Vehicles</option>
+                            <option value="service">Service & Maintenance</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        <span>Send Message</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+                </div>
+                <div class="contact-map">
+                    <h3><i class="fas fa-map-marked-alt"></i> Find Us</h3>
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.1234567890123!2d31.123456789012345!3d30.123456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDA3JzI0LjQiTiAzMcKwMDcnMjQuNCJF!5e0!3m2!1sen!2seg!4v1234567890123!5m2!1sen!2seg&q=Portal+A%2C+Sodic+Beverly+Hills%2C+Sheikh+Zayed%2C+Egypt"
+                            width="100%" 
+                            height="400" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Car Details Modal -->
+    <div id="carModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCarModal()">&times;</span>
+            <div class="modal-body" id="modalBody">
+                <!-- Car details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Quote Request Modal -->
+    <div id="quoteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Get Quote</h2>
+                <button class="close" onclick="closeQuoteModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="quoteForm">
+                    <input type="hidden" id="quoteCarId" name="carId">
+                    <div class="form-group">
+                        <label for="quoteName">Full Name</label>
+                        <input type="text" id="quoteName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quoteEmail">Email Address</label>
+                        <input type="email" id="quoteEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quotePhone">Phone Number</label>
+                        <input type="tel" id="quotePhone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quoteInterest">Interest Level</label>
+                        <select id="quoteInterest" name="interest">
+                            <option value="quote">Just Getting Quote</option>
+                            <option value="purchase">Ready to Purchase</option>
+                            <option value="finance">Need Financing</option>
+                            <option value="trade">Trade-in Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quoteMessage">Additional Requirements</label>
+                        <textarea id="quoteMessage" name="message" rows="4" placeholder="Any specific requirements, questions, or additional information..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Request Quote</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Test Drive Modal -->
+    <div id="testDriveModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Schedule Test Drive</h2>
+                <button class="close" onclick="closeTestDriveModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="testDriveForm">
+                    <input type="hidden" id="testDriveCarId" name="carId">
+                    <div class="form-group">
+                        <label for="testDriveName">Full Name</label>
+                        <input type="text" id="testDriveName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="testDriveEmail">Email Address</label>
+                        <input type="email" id="testDriveEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="testDrivePhone">Phone Number</label>
+                        <input type="tel" id="testDrivePhone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="preferredDate">Preferred Date</label>
+                        <input type="date" id="preferredDate" name="preferredDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="preferredTime">Preferred Time</label>
+                        <select id="preferredTime" name="preferredTime" required>
+                            <option value="">Select Time</option>
+                            <option value="09:00">9:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="13:00">1:00 PM</option>
+                            <option value="14:00">2:00 PM</option>
+                            <option value="15:00">3:00 PM</option>
+                            <option value="16:00">4:00 PM</option>
+                            <option value="17:00">5:00 PM</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="testDriveMessage">Special Requirements</label>
+                        <textarea id="testDriveMessage" name="message" rows="3" placeholder="Any special requirements or questions about the test drive..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Schedule Test Drive</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="static/Logo Without Bg.png" alt="EXOTIC ONE" class="logo">
+                    </div>
+                    <p>Redefining the future of automotive excellence</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#showroom">Showroom</a></li>
+                        <li><a href="#services">Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/exoticoneeg/"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EXOTIC ONE. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Plyr JavaScript -->
+    <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+    
+    <script src="script.js"></script>
+    <!-- Firebase (for live data on homepage) -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-storage-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        // Mobile: show dropdown instead of buttons and sync with filter logic
+        (function() {
+            function applyResponsiveCategoryUI() {
+                var mq = window.matchMedia ? window.matchMedia('(max-width: 768px)') : { matches: window.innerWidth <= 768 };
+                var dropdownWrap = document.querySelector('.category-select-mobile');
+                var buttonsWrap = document.querySelector('.filter-buttons');
+                if (!dropdownWrap || !buttonsWrap) return;
+                dropdownWrap.style.display = mq.matches ? 'block' : 'none';
+                buttonsWrap.style.display = mq.matches ? 'none' : 'flex';
+            }
+
+            function wireMobileCategorySelect() {
+                var select = document.getElementById('categorySelectMobile');
+                if (!select) return;
+                select.addEventListener('change', function(e) {
+                    var value = e.target.value;
+                    var btn = document.querySelector('.filter-buttons .filter-btn[data-filter="' + value + '"]');
+                    if (btn) btn.click();
+                });
+            }
+
+            window.addEventListener('load', function() {
+                applyResponsiveCategoryUI();
+                wireMobileCategorySelect();
+            });
+            window.addEventListener('resize', applyResponsiveCategoryUI);
+        })();
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+    <style>
+        @media (max-width: 768px) {
+            .filter-buttons { display: none !important; }
+            .category-select-mobile { display: block !important; }
+        }
+    </style>
+</body>
+</html>
